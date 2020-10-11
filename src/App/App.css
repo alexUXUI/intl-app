@@ -1,0 +1,38 @@
+@import "../Nav/Nav.css";
+@import "../ToolBar/Toolbar.css";
+
+*  {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
+    contain: content;
+}
+
+
+body {
+    background-color: #434343;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #eaeaea;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        flex-direction: column;
+        width: 100vw;
+    }
+}
+
+.feature-module {
+    padding: 20px;
+    height: 100%;
+    background: #eaeaea;
+    overflow-x: scroll;
+}

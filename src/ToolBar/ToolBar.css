@@ -1,0 +1,23 @@
+.toolbar {
+    background-color: #cacaca;
+    width: calc(100vw - 200px);
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.toolbar ul {
+    display: flex;
+}
+
+.toolbar ul li {
+    margin: 0 5px 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .toolbar {
+        width: 100%;
+    }
+}
