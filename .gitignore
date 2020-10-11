@@ -5,4 +5,6 @@ npm-debug.log
 /lib/bs/
 /node_modules/
 /bundleOutput/
-/src/*.bj.js
+/src/**/**.bs.js
+/src/Env.*
+/src/payload.json
