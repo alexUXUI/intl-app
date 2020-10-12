@@ -8,4 +8,5 @@ npm-debug.log
 /src/**/**.bs.js
 /src/Env.*
 /src/payload.json
+**/*.bs.js
 *.bs.js
