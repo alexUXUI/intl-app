@@ -4,6 +4,7 @@ open Utils;
 open Env;
 open Map;
 open MapboxGL;
+open Nav;
 
 type weatherData = {
     lat: float,
