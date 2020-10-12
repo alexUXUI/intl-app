@@ -7,12 +7,26 @@ open Env;
 
 [@bs.val] external document: Js.t({..}) = "document";
 
+type lngLat = {
+  lat: float,
+  lng: float,
+};
+
+type mapData = {lngLat: lngLat};
+
+
+
+type locationState =
+  | LocationLoading
+  | LocationError
+  | LocationSuccess(mapData);
+
 // set accessToken from environment variable
 let accessToken: string = mapboxKey;
 setAccessToken(mapboxGL, accessToken);
 
 [@react.component]
-let make = () => {
+let make = (~setLocation) => {
   let mapRef = React.useRef(Js.Nullable.null);
 
   React.useEffect(() => {
@@ -27,10 +41,7 @@ let make = () => {
           "zoom": 9.,
         };
 
-        // create map
         let map = MapGL.make(map_options);
-
-        // MapGL center getter
         let center = MapGL.getCenter(map);
 
         // LngLat getters
@@ -40,7 +51,7 @@ let make = () => {
         // LngLat constructor
         let center = LngLat.make(~lng=-74.50, ~lat=40.);
 
-        let onLoad = () => {
+        let onLoad = (callBackData: string) => {
           let source = {
             "type": "vector",
             "url": "mapbox://mapbox.mapbox-terrain-v2",
@@ -67,7 +78,20 @@ let make = () => {
 
           ();
         };
+
+        let handleClick = (data: mapData) => {
+          Js.log("HANDLE CLICK")
+          Js.log(data.lngLat)
+          setLocation(_previousState => LocationSuccess({
+            lngLat: {
+              lat: data.lngLat.lat,
+              lng: data.lngLat.lng,
+            }
+          }))
+        }
+
         MapGL.on(map, "load", onLoad);
+        MapGL.on(map, "click", handleClick);
       })
     ->ignore;
     None;
